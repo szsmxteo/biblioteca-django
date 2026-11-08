@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1 class="mb-4">Agregar Nuevo Libro</h1>
+    <form method="post" class="w-50">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Guardar Libro</button>
+        <a href="{% url 'lista_libros' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+{% endblock %}

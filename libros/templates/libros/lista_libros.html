@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1 class="mb-4">Lista de Libros</h1>
+    <a href="{% url 'agregar_libro' %}" class="btn btn-primary mb-3">➕ Agregar Libro</a>
+
+    <div class="row">
+        {% for libro in libros %}
+            <div class="col-md-4 mb-3">
+                <div class="card {% if libro.disponible %}border-success{% else %}border-danger{% endif %}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ libro.titulo }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ libro.autor }}</h6>
+                        <p class="card-text">
+                            <strong>ISBN:</strong> {{ libro.isbn }}<br>
+                            <strong>Disponible:</strong>
+                            {% if libro.disponible %}<span class="badge bg-success">Sí</span>
+                            {% else %}<span class="badge bg-danger">No</span>{% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p class="text-muted">No hay libros registrados.</p>
+        {% endfor %}
+    </div>
+{% endblock %}
